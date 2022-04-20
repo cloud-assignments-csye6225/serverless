@@ -1,0 +1,22 @@
+{
+  "name": "serverless",
+  "version": "1.0.0",
+  "description": "Serverless repo with Lambda function",
+  "main": "lambda.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kartheekdabbiru97/serverless.git"
+  },
+  "author": "Kartheek Dabbiru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kartheekdabbiru97/serverless/issues"
+  },
+  "homepage": "https://github.com/kartheekdabbiru97/serverless#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1117.0"
+  }
+}

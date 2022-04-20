@@ -1,0 +1,35 @@
+name: Lambda
+env:
+  AWS_REGION: us-east-1
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: on-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install AWS Cli
+        run: sudo pip install awscli
+
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_ID }}
+          aws-region: us-east-1
+
+      - name: zip files
+        run : zip -r csye6225-lambda-${{ github.sha }}.zip emailVerification.js
+        
+      - name: Upload Zip to S3
+        run: |
+          aws s3 cp ./csye6225-lambda-${{ github.sha}}.zip s3://${{ secrets.LAMBDA_S3 }}/
+      
+      - name: Update Function Code
+        run: |
+          aws lambda update-function-code --function-name emailVerification --s3-bucket ${{ secrets.S3_LAMBDA_BUCKETNAME  }} --s3-key csye6225-lambda-${{ github.sha }}.zip

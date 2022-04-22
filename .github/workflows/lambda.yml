@@ -7,7 +7,7 @@ on:
       - main
 jobs:
   build:
-    name: on-push
+    name: lambda-cicd
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -24,7 +24,7 @@ jobs:
           aws-region: us-east-1
 
       - name: zip files
-        run : zip -r csye6225-lambda-${{ github.sha }}.zip emailVerification.js
+        run : zip -r csye6225-lambda-${{ github.sha }}.zip lambda.js
         
       - name: Upload Zip to S3
         run: |

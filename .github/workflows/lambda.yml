@@ -28,8 +28,8 @@ jobs:
         
       - name: Upload Zip to S3
         run: |
-          aws s3 cp ./csye6225-lambda-${{ github.sha}}.zip s3://${{ secrets.LAMBDA_S3 }}/
+          aws s3 cp ./csye6225-lambda-${{ github.sha }}.zip s3://${{ secrets.AWS_LAMBDA_S3_BUCKET }}/
       
       - name: Update Function Code
         run: |
-          aws lambda update-function-code --function-name emailVerification --s3-bucket ${{ secrets.S3_LAMBDA_BUCKETNAME  }} --s3-key csye6225-lambda-${{ github.sha }}.zip
+          aws lambda update-function-code --function-name emailVerification --s3-bucket ${{ secrets.AWS_LAMBDA_S3_BUCKET }} --s3-key csye6225-lambda-${{ github.sha }}.zip

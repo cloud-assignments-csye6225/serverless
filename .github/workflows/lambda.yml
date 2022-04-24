@@ -24,7 +24,7 @@ jobs:
           aws-region: us-east-1
 
       - name: zip files
-        run : zip -r csye6225-lambda-${{ github.sha }}.zip lambda.js
+        run : zip -r csye6225-lambda-${{ github.sha }}.zip emailVerification.js
         
       - name: Upload Zip to S3
         run: |
